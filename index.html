@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Telefonlar için Özel Tasarım</title>
+  <style>
+    /* Genel Stiller (Tüm cihazlar için geçerli) */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f4f4f4;
+    }
+    .content {
+      text-align: center;
+    }
+    video, img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+
+    /* Telefonlar için Özel Stiller */
+    @media (max-width: 768px) {
+      body {
+        background-color: #e0f7fa; /* Mobilde farklı bir arka plan rengi */
+      }
+      .content {
+        padding: 10px;
+      }
+      video {
+        width: 90%; /* Mobilde videolar biraz daha küçük */
+      }
+    }
+
+    /* Daha Küçük Telefonlar için (örneğin: 480px ve altı) */
+    @media (max-width: 480px) {
+      body {
+        background-color: #ffebee;
+      }
+      video {
+        width: 100%; /* Küçük telefonlarda tam genişlik */
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <!-- Video ve Fotoğraf Alanı -->
+    <video id="video1" controls>
+      <source src="video1.mp4" type="video/mp4">
+      Tarayıcınız videoyu desteklemiyor.
+    </video>
+    <video id="video2" controls style="display: none;">
+      <source src="video2.mp4" type="video/mp4">
+      Tarayıcınız videoyu desteklemiyor.
+    </video>
+    <img id="photo" src="photo.jpg" alt="Gösterim Sonu Fotoğrafı" style="display: none;">
+  </div>
+
+  <script>
+    // Videolar ve Fotoğraf Geçişi
+    const video1 = document.getElementById('video1');
+    const video2 = document.getElementById('video2');
+    const photo = document.getElementById('photo');
+
+    video1.addEventListener('ended', () => {
+      video1.style.display = 'none';
+      video2.style.display = 'block';
+      video2.play();
+    });
+
+    video2.addEventListener('ended', () => {
+      video2.style.display = 'none';
+      photo.style.display = 'block';
+    });
+  </script>
+</body>
+</html>
